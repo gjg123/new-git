@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<!--vue-->
+		<script src="vue/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="vue/vue-resource.js" type="text/javascript" charset="utf-8"></script>
+		<script src="vue/vue-router.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.head-image{
+				width: 100px;
+				height: 100px;
+				background-color: #eee;
+			}
+		</style>
+		
+	</head>
+	<body>
+		
+		<!--view-->
+		<div id="app">
+
+			<img class="head-image" v-bind:src="src"/><br>
+
+		</div>
+		
+		<script src="interface.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			
+			//model
+			var data = {
+				message:"hello world",
+				src:""
+			}
+			
+			//ViewModel
+			var app = new Vue({
+				el:"#app",
+				data:data,
+				created:function(){
+					var url = userInfoUrl+"&userId=1";
+					this.$http.get(url,{},function () {
+						
+					}).then(function (r) {
+						
+						var trueData = r.data;
+						this.src = imagePrefix+trueData.data.image;
+						
+					})
+				}
+			});
+
+		</script>
+
+	</body>
+</html>

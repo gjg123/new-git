@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<style type="text/css">
+			body{
+				position: relative;
+			}
+			img{
+				display: block;
+				height:300px;
+			}
+			#box{
+				height:900px;
+				background: blueviolet;
+				margin:0 auto;
+				text-align: center;
+			}
+			.non{
+				position: absolute;
+				bottom:50px;
+				left:50%;
+				width:100px;
+				height:100px;
+				border-radius: 50%;
+				background: red;
+				margin:0 auto;
+				line-height: 100px;
+				text-align: center;
+				display: none;
+			}
+			.ww{
+				position: absolute;
+				top:50px;
+				left:50%;
+				width:100px;
+				height:100px;
+				border-radius: 50%;
+				background: blue;
+				margin:0 auto;
+				line-height: 100px;
+				text-align: center;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		
+		
+		<div class="box">
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446715714-297644878.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1461643199-118465958.jpg"/>
+			
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446715714-297644878.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446715714-297644878.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<img src="" data-src="img/1446712482-563409038.jpg"/>
+			<div class="non">
+				努力加载中
+			</div>
+			<div class="ww">
+				努力刷新中
+			</div>
+		<div/>
+		
+	</body>
+	<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		
+		
+		//判断元素是否出现在可视窗口范围内
+		function isVisible($el){			
+			var winH=$(window).height();//可视区域的高度
+			var sT=$(window).scrollTop();//滚动的高度
+			var top=$el.offset().top;//该元素距离文档顶部的高度
+			/*console.log(winH)
+			console.log(sT)
+			console.log(top)*/
+			
+			 if (top<sT+winH){//如果元素距离顶部的高度  小于滚动的高度加上可视区域的高度
+			 	//说明元素出现咋了可视窗口内
+			 	return true;
+			 }else {
+			 	
+			 	return false;
+			 }
+		}
+		
+	
+		
+		
+		//加载元素	
+			function checkShow(){				
+					$(".box img").each(function (){
+						var $cur=$(this)
+						if (!isVisible($cur)){
+							return;
+						}
+						if (isVisible($cur)){
+					
+							showImg($cur)
+						}
+					})
+			}		
+		//替换真正的地址，显示图片元素	
+		function showImg($node){
+			$node.attr("src",$node.attr("data-src"))
+		}
+		
+		
+		
+//如果出现滚动事件  并且   出现在可视区域内    就加载出现在可视窗口范围内的图片图
+	$(window).on("scroll",function(){
+		setTimeout(function(){
+			checkShow($(".box img"))
+		},1000)		
+	})
+//初始化图片	
+	checkShow($(".box img"))
+	
+	
+//当页面滚动到底部的时候，出现加载中的按钮	并发送请求加载数据
+	$(window).on("scroll",function(){
+		var $document=$(document).height();//文档的高度
+		var winH=$(window).height();//可视窗口区域的高度
+		var sT=$(window).scrollTop();//滚动的高度
+		//当可视区域的高度加上滚动的高度   大于等于   文档的高度   的时候   说明滚动到了底部  下拉加载
+		if (winH+sT>=$document){
+			if ($(".non").css('display')=="none"){
+			
+				$(".non").show()
+				//进行AJAX请求
+				
+				
+			}
+			setTimeout(function(){
+					$(".non").hide()
+				},1000)
+			
+		}
+	})
+//当可视区域的高度加上滚动的高度   小于等于   文档的高度   的时候   说明滚动到了底部  	
+//	上啦刷新
+	
+	$(window).on("scroll",function(){
+		var $document=$(document).height();//文档的高度
+		var winH=$(window).height();//可视窗口区域的高度
+		var sT=$(window).scrollTop();//滚动的高度
+		if (sT+winH<=$document){
+			console.log(456)
+			$(".ww").show();
+		}
+		setTimeout(function(){
+			$(".ww").hide();
+		},1000)
+	})
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	</script>
+</html>

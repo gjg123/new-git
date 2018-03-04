@@ -1,0 +1,144 @@
+/*初始化*/
+* {
+  margin: 0;
+  padding: 0;
+}
+ul {
+  list-style: none;
+}
+a {
+  color: #eee;
+  text-decoration: none;
+}
+body {
+  background: #EEEEEE;
+}
+/*导航栏*/
+.header {
+  width: 100%;
+  height: 50px;
+  background: #FF495C;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.header input {
+  width: 60%;
+  height: 30px;
+  margin-top: 10px;
+  padding-left: 15px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 15px;
+}
+.header .left-arrow {
+  float: left;
+  width: 18px;
+  height: 50px;
+  margin-left: 20px;
+  background: url(../img/btn_bg.png) no-repeat 0 10px;
+}
+.header .right-search {
+  float: right;
+  width: 30px;
+  height: 50px;
+  margin-right: 20px;
+  background: url(../img/btn_search.png) no-repeat center;
+  background-size: 35px 35px;
+}
+/*中间部分*/
+.content {
+  margin-top: 50px;
+  width: 100%;
+}
+.content ul {
+  padding-top: 10px;
+  width: 100%;
+}
+.content ul li {
+  width: 33.33%;
+  float: left;
+  border-bottom: 1px solid #ccc;
+}
+.content ul li .leftImg {
+  float: left;
+  width: 25%;
+  height: 100%;
+}
+.content ul li .leftImg img {
+  width: 100%;
+}
+.content ul li .rightInfo {
+  padding-top: 10px;
+  width: 75%;
+  height: 100%;
+  float: left;
+}
+.content ul li .rightInfo .title {
+  font-size: 14px;
+}
+.content ul li .rightInfo .market-price {
+  font-size: 12px;
+  color: #ccc;
+  text-decoration: line-through;
+}
+.content ul li .rightInfo .sc-price {
+  color: red;
+}
+@media screen and (min-width: 600px) and (max-width: 1000px) {
+  .content ul li {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .content ul li {
+    width: 100%;
+  }
+  .content ul li .leftImg {
+    width: 100%;
+  }
+  .content ul li .rightInfo {
+    width: 100%;
+  }
+}
+/*footer部分*/
+.footer {
+  width: 100%;
+  height: 60px;
+  background: black;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.footer ul {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.footer ul a li {
+  float: left;
+  width: 25%;
+  height: 100%;
+}
+.footer ul a i {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: url(../img/btn_nav.png) no-repeat;
+  background-size: 60px 130px;
+  margin: 5px auto 0;
+}
+.footer ul a:hover i {
+  background-position-x: -31px;
+}
+.footer ul a .cate {
+  background-position: 0px -72px;
+}
+.footer ul a .shopCar {
+  background-position: 0px -26px;
+}
+.footer ul a .mine {
+  background-position: 0px -98px;
+}

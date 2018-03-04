@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<!--
+			form表单上传文件
+				action 那个后台文件接收文件
+				method="post"	文件用post,其他用get
+				
+				上传文件
+				enctype="multipart/form-data"
+				
+				参数
+					input	name="m" value="user"
+					
+				
+		-->
+		<div>
+			<img id="img-box" style="border: 1px solid gray; width: 100px; height: 100px;" src=""/>
+		
+			<input type="file" name="newHeadImage" id="newHeadImage" value="" />
+		
+			<input class="upload-file" type="button" value="上传"/>
+		</div>
+		
+		
+		
+		<script src="jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="interface.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			
+			$(".upload-file").click(function () {
+				
+				//A.获取图片输入框
+				var tag = document.getElementById("newHeadImage");
+						
+						
+				//B.获取选择的文件,图片
+				//input file类型的标签中, 所有的文件放在files属性中, 这个属性是个数组
+				//alert( tag.files.length)
+				if(tag.files.length == 0){
+					alert("没有选择图片")
+					return
+				}
+				var uploadFile = tag.files[0];
+				
+				
+				//没有form, 造一个form
+				//C.生成FormData. 生成了form表单
+				var formData = new FormData();
+				formData.append("m","user")
+				formData.append("a","changeHeadImage")
+				formData.append("userId","1")
+				formData.append("newHeadImage",uploadFile);
+				
+				//D.发起post请求
+				//vue: this.$http.post()
+				
+				$.ajax({
+					type:"post",
+					url:changeHeadImageUrl,
+					async:true,
+					data:formData,
+					//这个值如果为真, 数据转化为字符串传递
+					//	传文件, 设置为false
+					processData:false,
+					contentType:false
+				}).done(function (r) {
+					alert(r)
+				});
+				
+			})
+			
+			
+			
+			
+	
+			//处理图片选择
+			var tag = document.querySelector("#newHeadImage");
+			tag.addEventListener("change",function(){
+				//alert("11")
+				
+				//B.获取选择的文件,图片
+				//input file类型的标签中, 所有的文件放在files属性中, 这个属性是个数组
+				//alert( tag.files.length)
+				if(tag.files.length == 0){
+					alert("没有选择图片")
+					return
+				}
+				var uploadFile = tag.files[0];
+				
+				//C.从文件对象获取本地路径src
+				var src = window.URL.createObjectURL(uploadFile)
+				//blob:http://127.0.0.1:A8020/6cc769b4-721b-42bf-92fc-07bf0543d3aa
+				console.log(src)
+				
+				//D.显示图片
+				var imgBox = document.getElementById("img-box")
+				imgBox.src = src;
+			})
+		</script>
+		
+	</body>
+</html>

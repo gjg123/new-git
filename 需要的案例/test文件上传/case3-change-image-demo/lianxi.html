@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		
+		<!--vue-->
+		<script src="vue/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="vue/vue-resource.js" type="text/javascript" charset="utf-8"></script>
+		<script src="vue/vue-router.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.head-image{
+				width: 100px;
+				height: 100px;
+				background-color: #eee;
+			}
+		</style>
+		
+	</head>
+	<body>
+		
+		<!--view-->
+		<div id="app">
+			<div>
+				<div>
+					<img class="head-image" v-bind:src="src"/><br>
+					<input id="headImageTag" type="file" name="" id="" value="" multiple="multiple" v-on:change="dealChange"/>
+				</div>
+				<div>
+					<button v-on:click="dealChangeImage">修改头像</button>
+				</div>
+			</div>
+		</div>
+		
+		<script src="interface.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			
+			//model
+			var data = {
+				message:"hello world",
+				src:""
+			}
+			
+			//ViewModel
+			var app = new Vue({
+				el:"#app",
+				data:data,
+				methods:{
+					getImgUrl:function () {
+						//获取图片输入框
+						var tag = document.getElementById("headImageTag");
+						
+						//获取选择的文件，图片
+						if (tag.files.length == 0) {
+							alert("请上传文件");
+							return;
+						}
+						var upLoadFile = tag.files[0];
+						
+						//从文件对象获取本地路径
+						var src = window.URL.createObjectURL(upLoadFile);
+						
+						//显示图片
+						this.src = src;
+					},
+					dealChange:function () {
+						
+						//调用显示函数
+						this.getImgUrl();
+					},
+					
+					dealChangeImage:function () {
+						
+						//获取图片输入框
+						var tag = document.getElementById("headImageTag");
+						
+						//获取选择的文件，图片
+						if (tag.files.length == 0) {
+							alert("请上传文件");
+							return;
+						}
+						var upLoadFile = tag.files[0];
+						
+						//生成一个form
+						//生成Formdata,生成form表单
+						var formData = new FormData();
+						formData.append("m","user");
+						formData.append("a","changeHeadImage");
+						formData.append("userId","169");
+						formData.append("newHeadImage",upLoadFile);
+						
+						//发起post请求
+						var url = changeHeadImageUrl;
+						this.$http.post(url,formData,function(){}).then(function (res) {
+							var jsonObj = res.data;
+							console.log("jsonObj=" + JSON.stringify(jsonObj));
+						})
+						
+					}
+				}
+			});
+
+		</script>
+
+	</body>
+</html>

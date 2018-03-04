@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<!--
+			form表单上传文件
+				action 那个后台文件接收文件
+				method="post"	文件用post,其他用get
+				
+				上传文件
+				enctype="multipart/form-data"
+				
+				参数
+					input	name="m" value="user"
+					
+				
+		-->
+		<img id="img-box" style="border: 1px solid gray; width: 100px; height: 100px;" src=""/>
+		<form action="http://192.168.0.3/project/artist-v2/api/index.php" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="m" id="m" value="user" />
+			<input type="hidden" name="a" id="a" value="changeHeadImage" />
+			<input type="hidden" name="userId" id="userId" value="1" />
+			<input type="file" name="newHeadImage" id="newHeadImage" value="" />
+			<input type="submit" value="提交"/>
+		</form>
+		
+		
+		<script type="text/javascript">
+			var tag = document.querySelector("#newHeadImage");
+			tag.addEventListener("change",function(){
+				//alert("11")
+				
+				//B.获取选择的文件,图片
+				//input file类型的标签中, 所有的文件放在files属性中, 这个属性是个数组
+				//alert( tag.files.length)
+				if(tag.files.length == 0){
+					alert("没有选择图片")
+					return
+				}
+				var uploadFile = tag.files[0];
+				
+				//C.从文件对象获取本地路径src
+				var src = window.URL.createObjectURL(uploadFile)
+				//blob:http://127.0.0.1:A8020/6cc769b4-721b-42bf-92fc-07bf0543d3aa
+				console.log(src)
+				
+				//D.显示图片
+				var imgBox = document.getElementById("img-box")
+				imgBox.src = src;
+			})
+		</script>
+		
+	</body>
+</html>

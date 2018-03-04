@@ -1,0 +1,161 @@
+/*初始化*/
+*{
+    margin: 0;
+    padding: 0;
+}
+ul{
+    list-style: none;
+}
+a{
+    color: #eee;
+    text-decoration: none;
+}
+body{
+    background: #EEEEEE;
+}
+/*导航栏*/
+.header{
+    width: 100%;
+    height: 50px;
+    background: #FF495C;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    input{
+        width: 60%;
+        height: 30px;
+        margin-top: 10px;
+        padding-left: 15px;
+        box-sizing: border-box;
+        border: none;
+        border-radius: 15px;
+    }
+    .left-arrow{
+        float: left;
+        width: 18px;
+        height: 50px;
+        margin-left: 20px;
+        background: url(../img/btn_bg.png) no-repeat 0 10px;
+    }
+    .right-search{
+        float: right;
+        width: 30px;
+        height: 50px;
+        margin-right: 20px;
+        background: url(../img/btn_search.png) no-repeat center;
+        background-size: 35px 35px;
+    }
+    
+}
+
+
+@li:.content ul li;
+@leftImg:.content ul li .leftImg;
+@rightInfo:.content ul li .rightInfo;
+
+/*中间部分*/
+.content{
+    margin-top: 50px;
+    width: 100%;
+    ul{
+        padding-top: 10px;
+        width: 100%;
+        li{
+            width: 33.33%;
+            float: left;
+            border-bottom: 1px solid #ccc;
+            .leftImg{
+                float: left;
+                width: 25%;
+                height: 100%;
+                img{
+                    width: 100%;
+                }
+            }
+            .rightInfo{
+                padding-top: 10px;
+                width: 75%;
+                height: 100%;
+                float: left;
+                .title{
+                    font-size: 14px;
+                }
+                .market-price{
+                    font-size: 12px;
+                    color: #ccc;
+                    text-decoration: line-through;
+                }
+                .sc-price{
+                    color: red;
+                }
+            }
+        }
+    }
+}
+@media screen and (min-width:600px) and (max-width:1000px){
+    @{li}{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:600px){
+    @{li}{
+        width: 100%;
+    }
+    @{leftImg}{
+        width: 100%;
+    }
+    @{rightInfo}{
+        width: 100%;
+    }
+}
+
+/*footer部分*/
+.footer{
+    width: 100%;
+    height: 60px;
+    background: black;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    ul{
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        a{
+            li{
+                float: left;
+                width: 25%;
+                height: 100%;
+            }
+            i{
+                display: block;
+                width: 30px;
+                height: 30px;
+                background: url(../img/btn_nav.png) no-repeat;
+                background-size: 60px 130px;
+                margin: 5px auto 0;
+            }
+            &:hover{
+                i{
+                    background-position-x: -31px;
+                }
+            }
+            .cate{
+                background-position: 0px -72px;
+            }
+            .shopCar{
+                background-position: 0px -26px;
+            }
+            .mine{
+                background-position: 0px -98px;
+            }
+            
+        }
+    }
+    
+    
+    
+}
+
